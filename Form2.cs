@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Dictionaries
 {
-    public partial class Form2 : Form
+    public partial class Form_adding : Form
     {
-        public Form2()
+        public Form_adding()
         {
             InitializeComponent();
         }
