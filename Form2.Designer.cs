@@ -32,10 +32,10 @@
             label_LstName = new Label();
             label_FrstName = new Label();
             textBox_FrstName = new TextBox();
-            label_PtrName = new Label();
-            textBox_PtrnName = new TextBox();
+            label_surname = new Label();
+            textBox_Surname = new TextBox();
             label_DateOfB = new Label();
-            textBox_DateOfB = new TextBox();
+            textBox_dayOfB = new TextBox();
             label_company = new Label();
             textBox_company = new TextBox();
             label_rank = new Label();
@@ -44,16 +44,16 @@
             label_DateOf_Day = new Label();
             label_DateOfB_month = new Label();
             comboBox_monthOfB = new ComboBox();
-            textBox_dateOfB_Year = new TextBox();
+            textBox_yearOfB = new TextBox();
             label_DateOfB_Year = new Label();
             label_DateOfHire_Year = new Label();
-            textBox_DateOfHire_Year = new TextBox();
-            comboBox_DateOfHire_Month = new ComboBox();
+            textBox_yearOfHire = new TextBox();
+            comboBox_monthOfHire = new ComboBox();
             label_DateOfHire_Month = new Label();
             label_DateOfHire_Day = new Label();
-            textBox_DateOfHire_Day = new TextBox();
+            textBox_dayOfHire = new TextBox();
             pictureBox_Add_photo = new PictureBox();
-            button_AddPhoto = new Button();
+            btn_AddPhoto = new Button();
             btn_AddItem = new Button();
             btn_Cancel = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox_Add_photo).BeginInit();
@@ -91,21 +91,21 @@
             textBox_FrstName.Size = new Size(180, 23);
             textBox_FrstName.TabIndex = 2;
             // 
-            // label_PtrName
+            // label_surname
             // 
-            label_PtrName.AutoSize = true;
-            label_PtrName.Location = new Point(11, 83);
-            label_PtrName.Name = "label_PtrName";
-            label_PtrName.Size = new Size(58, 15);
-            label_PtrName.TabIndex = 5;
-            label_PtrName.Text = "Отчетсво";
+            label_surname.AutoSize = true;
+            label_surname.Location = new Point(11, 83);
+            label_surname.Name = "label_surname";
+            label_surname.Size = new Size(58, 15);
+            label_surname.TabIndex = 5;
+            label_surname.Text = "Отчетсво";
             // 
-            // textBox_PtrnName
+            // textBox_Surname
             // 
-            textBox_PtrnName.Location = new Point(156, 80);
-            textBox_PtrnName.Name = "textBox_PtrnName";
-            textBox_PtrnName.Size = new Size(180, 23);
-            textBox_PtrnName.TabIndex = 4;
+            textBox_Surname.Location = new Point(156, 80);
+            textBox_Surname.Name = "textBox_Surname";
+            textBox_Surname.Size = new Size(180, 23);
+            textBox_Surname.TabIndex = 4;
             // 
             // label_DateOfB
             // 
@@ -116,12 +116,12 @@
             label_DateOfB.TabIndex = 7;
             label_DateOfB.Text = "Дата рождения";
             // 
-            // textBox_DateOfB
+            // textBox_dayOfB
             // 
-            textBox_DateOfB.Location = new Point(156, 123);
-            textBox_DateOfB.Name = "textBox_DateOfB";
-            textBox_DateOfB.Size = new Size(34, 23);
-            textBox_DateOfB.TabIndex = 6;
+            textBox_dayOfB.Location = new Point(156, 123);
+            textBox_dayOfB.Name = "textBox_dayOfB";
+            textBox_dayOfB.Size = new Size(34, 23);
+            textBox_dayOfB.TabIndex = 6;
             // 
             // label_company
             // 
@@ -184,20 +184,20 @@
             // 
             // comboBox_monthOfB
             // 
+            comboBox_monthOfB.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_monthOfB.FormattingEnabled = true;
             comboBox_monthOfB.Items.AddRange(new object[] { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" });
             comboBox_monthOfB.Location = new Point(196, 123);
             comboBox_monthOfB.Name = "comboBox_monthOfB";
             comboBox_monthOfB.Size = new Size(74, 23);
             comboBox_monthOfB.TabIndex = 16;
-            comboBox_monthOfB.Text = "Январь";
             // 
-            // textBox_dateOfB_Year
+            // textBox_yearOfB
             // 
-            textBox_dateOfB_Year.Location = new Point(276, 123);
-            textBox_dateOfB_Year.Name = "textBox_dateOfB_Year";
-            textBox_dateOfB_Year.Size = new Size(60, 23);
-            textBox_dateOfB_Year.TabIndex = 17;
+            textBox_yearOfB.Location = new Point(276, 123);
+            textBox_yearOfB.Name = "textBox_yearOfB";
+            textBox_yearOfB.Size = new Size(60, 23);
+            textBox_yearOfB.TabIndex = 17;
             // 
             // label_DateOfB_Year
             // 
@@ -217,22 +217,22 @@
             label_DateOfHire_Year.TabIndex = 24;
             label_DateOfHire_Year.Text = "Год";
             // 
-            // textBox_DateOfHire_Year
+            // textBox_yearOfHire
             // 
-            textBox_DateOfHire_Year.Location = new Point(276, 226);
-            textBox_DateOfHire_Year.Name = "textBox_DateOfHire_Year";
-            textBox_DateOfHire_Year.Size = new Size(60, 23);
-            textBox_DateOfHire_Year.TabIndex = 23;
+            textBox_yearOfHire.Location = new Point(276, 226);
+            textBox_yearOfHire.Name = "textBox_yearOfHire";
+            textBox_yearOfHire.Size = new Size(60, 23);
+            textBox_yearOfHire.TabIndex = 23;
             // 
-            // comboBox_DateOfHire_Month
+            // comboBox_monthOfHire
             // 
-            comboBox_DateOfHire_Month.FormattingEnabled = true;
-            comboBox_DateOfHire_Month.Items.AddRange(new object[] { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" });
-            comboBox_DateOfHire_Month.Location = new Point(196, 226);
-            comboBox_DateOfHire_Month.Name = "comboBox_DateOfHire_Month";
-            comboBox_DateOfHire_Month.Size = new Size(74, 23);
-            comboBox_DateOfHire_Month.TabIndex = 22;
-            comboBox_DateOfHire_Month.Text = "Январь";
+            comboBox_monthOfHire.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox_monthOfHire.FormattingEnabled = true;
+            comboBox_monthOfHire.Items.AddRange(new object[] { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" });
+            comboBox_monthOfHire.Location = new Point(196, 226);
+            comboBox_monthOfHire.Name = "comboBox_monthOfHire";
+            comboBox_monthOfHire.Size = new Size(74, 23);
+            comboBox_monthOfHire.TabIndex = 22;
             // 
             // label_DateOfHire_Month
             // 
@@ -252,29 +252,33 @@
             label_DateOfHire_Day.TabIndex = 20;
             label_DateOfHire_Day.Text = "День";
             // 
-            // textBox_DateOfHire_Day
+            // textBox_dayOfHire
             // 
-            textBox_DateOfHire_Day.Location = new Point(156, 226);
-            textBox_DateOfHire_Day.Name = "textBox_DateOfHire_Day";
-            textBox_DateOfHire_Day.Size = new Size(34, 23);
-            textBox_DateOfHire_Day.TabIndex = 19;
+            textBox_dayOfHire.Location = new Point(156, 226);
+            textBox_dayOfHire.Name = "textBox_dayOfHire";
+            textBox_dayOfHire.Size = new Size(34, 23);
+            textBox_dayOfHire.TabIndex = 19;
             // 
             // pictureBox_Add_photo
             // 
+            pictureBox_Add_photo.Image = Properties.Resources.no_image;
+            pictureBox_Add_photo.InitialImage = Properties.Resources.no_image;
             pictureBox_Add_photo.Location = new Point(182, 263);
             pictureBox_Add_photo.Name = "pictureBox_Add_photo";
             pictureBox_Add_photo.Size = new Size(111, 125);
+            pictureBox_Add_photo.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_Add_photo.TabIndex = 25;
             pictureBox_Add_photo.TabStop = false;
             // 
-            // button_AddPhoto
+            // btn_AddPhoto
             // 
-            button_AddPhoto.Location = new Point(21, 298);
-            button_AddPhoto.Name = "button_AddPhoto";
-            button_AddPhoto.Size = new Size(100, 40);
-            button_AddPhoto.TabIndex = 26;
-            button_AddPhoto.Text = "Добавить фото";
-            button_AddPhoto.UseVisualStyleBackColor = true;
+            btn_AddPhoto.Location = new Point(21, 298);
+            btn_AddPhoto.Name = "btn_AddPhoto";
+            btn_AddPhoto.Size = new Size(100, 40);
+            btn_AddPhoto.TabIndex = 26;
+            btn_AddPhoto.Text = "Добавить фото";
+            btn_AddPhoto.UseVisualStyleBackColor = true;
+            btn_AddPhoto.Click += btn_AddPhoto_Click;
             // 
             // btn_AddItem
             // 
@@ -284,6 +288,7 @@
             btn_AddItem.TabIndex = 27;
             btn_AddItem.Text = "Добавить";
             btn_AddItem.UseVisualStyleBackColor = true;
+            btn_AddItem.Click += btn_AddItem_Click;
             // 
             // btn_Cancel
             // 
@@ -293,24 +298,25 @@
             btn_Cancel.TabIndex = 28;
             btn_Cancel.Text = "Отмена";
             btn_Cancel.UseVisualStyleBackColor = true;
+            btn_Cancel.Click += btn_Cancel_Click;
             // 
             // Form_adding
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(347, 466);
+            ClientSize = new Size(344, 461);
             Controls.Add(btn_Cancel);
             Controls.Add(btn_AddItem);
-            Controls.Add(button_AddPhoto);
+            Controls.Add(btn_AddPhoto);
             Controls.Add(pictureBox_Add_photo);
             Controls.Add(label_DateOfHire_Year);
-            Controls.Add(textBox_DateOfHire_Year);
-            Controls.Add(comboBox_DateOfHire_Month);
+            Controls.Add(textBox_yearOfHire);
+            Controls.Add(comboBox_monthOfHire);
             Controls.Add(label_DateOfHire_Month);
             Controls.Add(label_DateOfHire_Day);
-            Controls.Add(textBox_DateOfHire_Day);
+            Controls.Add(textBox_dayOfHire);
             Controls.Add(label_DateOfB_Year);
-            Controls.Add(textBox_dateOfB_Year);
+            Controls.Add(textBox_yearOfB);
             Controls.Add(comboBox_monthOfB);
             Controls.Add(label_DateOfB_month);
             Controls.Add(label_DateOf_Day);
@@ -320,13 +326,15 @@
             Controls.Add(label_company);
             Controls.Add(textBox_company);
             Controls.Add(label_DateOfB);
-            Controls.Add(textBox_DateOfB);
-            Controls.Add(label_PtrName);
-            Controls.Add(textBox_PtrnName);
+            Controls.Add(textBox_dayOfB);
+            Controls.Add(label_surname);
+            Controls.Add(textBox_Surname);
             Controls.Add(label_FrstName);
             Controls.Add(textBox_FrstName);
             Controls.Add(label_LstName);
             Controls.Add(textBox_LstName);
+            MaximumSize = new Size(360, 500);
+            MinimumSize = new Size(360, 500);
             Name = "Form_adding";
             Text = "Добавление записи";
             ((System.ComponentModel.ISupportInitialize)pictureBox_Add_photo).EndInit();
@@ -340,10 +348,10 @@
         private Label label_LstName;
         private Label label_FrstName;
         private TextBox textBox_FrstName;
-        private Label label_PtrName;
-        private TextBox textBox_PtrnName;
+        private Label label_surname;
+        private TextBox textBox_Surname;
         private Label label_DateOfB;
-        private TextBox textBox_DateOfB;
+        private TextBox textBox_dayOfB;
         private Label label_company;
         private TextBox textBox_company;
         private Label label_rank;
@@ -352,16 +360,16 @@
         private Label label_DateOf_Day;
         private Label label_DateOfB_month;
         private ComboBox comboBox_monthOfB;
-        private TextBox textBox_dateOfB_Year;
+        private TextBox textBox_yearOfB;
         private Label label_DateOfB_Year;
         private Label label_DateOfHire_Year;
-        private TextBox textBox_DateOfHire_Year;
-        private ComboBox comboBox_DateOfHire_Month;
+        private TextBox textBox_yearOfHire;
+        private ComboBox comboBox_monthOfHire;
         private Label label_DateOfHire_Month;
         private Label label_DateOfHire_Day;
-        private TextBox textBox_DateOfHire_Day;
+        private TextBox textBox_dayOfHire;
         private PictureBox pictureBox_Add_photo;
-        private Button button_AddPhoto;
+        private Button btn_AddPhoto;
         private Button btn_AddItem;
         private Button btn_Cancel;
     }

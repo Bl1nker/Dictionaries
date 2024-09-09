@@ -28,34 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
+            components = new System.ComponentModel.Container();
+            Table1 = new DataGridView();
+            contextMenuForTable1 = new ContextMenuStrip(components);
+            addItem = new ToolStripMenuItem();
             btn_loadData = new Button();
             btn_LoadMuch = new Button();
-            textBox1 = new TextBox();
-            btn_sirch = new Button();
-            cb_typeOfSirch = new ComboBox();
+            textBox_Search = new TextBox();
+            btn_search = new Button();
+            cb_typeOfSearch = new ComboBox();
             btn_add = new Button();
-            col_nom = new DataGridViewTextBoxColumn();
-            col_foto = new DataGridViewTextBoxColumn();
+            removeItem = new ToolStripMenuItem();
+            removeAll = new ToolStripMenuItem();
+            editItem = new ToolStripMenuItem();
+            col_id = new DataGridViewTextBoxColumn();
+            col_photo = new DataGridViewImageColumn();
             col_LstName = new DataGridViewTextBoxColumn();
             col_FrstName = new DataGridViewTextBoxColumn();
-            col_PtrName = new DataGridViewTextBoxColumn();
+            col_Surname = new DataGridViewTextBoxColumn();
             col_DateOfB = new DataGridViewTextBoxColumn();
             col_company = new DataGridViewTextBoxColumn();
             col_rank = new DataGridViewTextBoxColumn();
             col_dateOfHire = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Table1).BeginInit();
+            contextMenuForTable1.SuspendLayout();
             SuspendLayout();
             // 
-            // dataGridView1
+            // Table1
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { col_nom, col_foto, col_LstName, col_FrstName, col_PtrName, col_DateOfB, col_company, col_rank, col_dateOfHire });
-            dataGridView1.Location = new Point(12, 48);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersVisible = false;
-            dataGridView1.Size = new Size(1021, 493);
-            dataGridView1.TabIndex = 0;
+            Table1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            Table1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            Table1.Columns.AddRange(new DataGridViewColumn[] { col_id, col_photo, col_LstName, col_FrstName, col_Surname, col_DateOfB, col_company, col_rank, col_dateOfHire });
+            Table1.ContextMenuStrip = contextMenuForTable1;
+            Table1.Location = new Point(12, 48);
+            Table1.Name = "Table1";
+            Table1.RowHeadersVisible = false;
+            Table1.Size = new Size(1021, 493);
+            Table1.TabIndex = 0;
+            // 
+            // contextMenuForTable1
+            // 
+            contextMenuForTable1.Items.AddRange(new ToolStripItem[] { addItem });
+            contextMenuForTable1.Name = "contextMenuforTable1";
+            contextMenuForTable1.Size = new Size(167, 26);
+            // 
+            // addItem
+            // 
+            addItem.Name = "addItem";
+            addItem.Size = new Size(166, 22);
+            addItem.Text = "Добавить запись";
+            addItem.Click += btn_add_Click;
             // 
             // btn_loadData
             // 
@@ -63,8 +85,9 @@
             btn_loadData.Name = "btn_loadData";
             btn_loadData.Size = new Size(120, 30);
             btn_loadData.TabIndex = 1;
-            btn_loadData.Text = "Загрузить данные";
+            btn_loadData.Text = "Загрузить реестр";
             btn_loadData.UseVisualStyleBackColor = true;
+            btn_loadData.Click += btn_loadData_Click;
             // 
             // btn_LoadMuch
             // 
@@ -74,36 +97,38 @@
             btn_LoadMuch.TabIndex = 2;
             btn_LoadMuch.Text = "Стресс тест";
             btn_LoadMuch.UseVisualStyleBackColor = true;
+            btn_LoadMuch.Click += btn_LoadMuch_Click;
             // 
-            // textBox1
+            // textBox_Search
             // 
-            textBox1.Font = new Font("Segoe UI", 9F);
-            textBox1.Location = new Point(585, 15);
-            textBox1.Margin = new Padding(3, 3, 1, 3);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(200, 23);
-            textBox1.TabIndex = 3;
+            textBox_Search.Font = new Font("Segoe UI", 9F);
+            textBox_Search.Location = new Point(585, 15);
+            textBox_Search.Margin = new Padding(3, 3, 1, 3);
+            textBox_Search.Name = "textBox_Search";
+            textBox_Search.Size = new Size(200, 23);
+            textBox_Search.TabIndex = 3;
             // 
-            // btn_sirch
+            // btn_search
             // 
-            btn_sirch.Location = new Point(787, 12);
-            btn_sirch.Margin = new Padding(1, 3, 3, 3);
-            btn_sirch.Name = "btn_sirch";
-            btn_sirch.Size = new Size(90, 30);
-            btn_sirch.TabIndex = 4;
-            btn_sirch.Text = "Поиск";
-            btn_sirch.UseVisualStyleBackColor = true;
+            btn_search.Location = new Point(787, 12);
+            btn_search.Margin = new Padding(1, 3, 3, 3);
+            btn_search.Name = "btn_search";
+            btn_search.Size = new Size(90, 30);
+            btn_search.TabIndex = 4;
+            btn_search.Text = "Поиск";
+            btn_search.UseVisualStyleBackColor = true;
+            btn_search.Click += btn_search_Click;
             // 
-            // cb_typeOfSirch
+            // cb_typeOfSearch
             // 
-            cb_typeOfSirch.Font = new Font("Segoe UI", 9F);
-            cb_typeOfSirch.FormattingEnabled = true;
-            cb_typeOfSirch.Items.AddRange(new object[] { "по фамилии", "по имени", "по отчеству", "по организации", "по должности" });
-            cb_typeOfSirch.Location = new Point(883, 17);
-            cb_typeOfSirch.Name = "cb_typeOfSirch";
-            cb_typeOfSirch.Size = new Size(150, 23);
-            cb_typeOfSirch.TabIndex = 5;
-            cb_typeOfSirch.Text = "по фамилии";
+            cb_typeOfSearch.Font = new Font("Segoe UI", 9F);
+            cb_typeOfSearch.FormattingEnabled = true;
+            cb_typeOfSearch.Items.AddRange(new object[] { "по фамилии", "по имени", "по отчеству", "по организации", "по должности" });
+            cb_typeOfSearch.Location = new Point(883, 17);
+            cb_typeOfSearch.Name = "cb_typeOfSearch";
+            cb_typeOfSearch.Size = new Size(150, 23);
+            cb_typeOfSearch.TabIndex = 5;
+            cb_typeOfSearch.Text = "по фамилии";
             // 
             // btn_add
             // 
@@ -111,22 +136,44 @@
             btn_add.Name = "btn_add";
             btn_add.Size = new Size(120, 30);
             btn_add.TabIndex = 6;
-            btn_add.Text = "Добавить";
+            btn_add.Text = "Добавить запись";
             btn_add.UseVisualStyleBackColor = true;
+            btn_add.Click += btn_add_Click;
             // 
-            // col_nom
+            // removeItem
             // 
-            col_nom.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            col_nom.HeaderText = "№";
-            col_nom.MinimumWidth = 10;
-            col_nom.Name = "col_nom";
-            col_nom.ReadOnly = true;
-            col_nom.Width = 45;
+            removeItem.Name = "removeItem";
+            removeItem.Size = new Size(32, 19);
+            removeItem.Text = "Удалить запись";
             // 
-            // col_foto
+            // removeAll
             // 
-            col_foto.HeaderText = "Фото";
-            col_foto.Name = "col_foto";
+            removeAll.Name = "removeAll";
+            removeAll.Size = new Size(32, 19);
+            removeAll.Text = "Удалить все записи";
+            // 
+            // editItem
+            // 
+            editItem.Name = "editItem";
+            editItem.Size = new Size(32, 19);
+            editItem.Text = "Изменить запись";
+            // 
+            // col_id
+            // 
+            col_id.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            col_id.HeaderText = "ID";
+            col_id.MinimumWidth = 10;
+            col_id.Name = "col_id";
+            col_id.ReadOnly = true;
+            col_id.Width = 43;
+            // 
+            // col_photo
+            // 
+            col_photo.HeaderText = "Фото";
+            col_photo.Name = "col_photo";
+            col_photo.ReadOnly = true;
+            col_photo.Resizable = DataGridViewTriState.True;
+            col_photo.SortMode = DataGridViewColumnSortMode.Automatic;
             // 
             // col_LstName
             // 
@@ -143,16 +190,17 @@
             col_FrstName.HeaderText = "Имя";
             col_FrstName.MinimumWidth = 90;
             col_FrstName.Name = "col_FrstName";
+            col_FrstName.ReadOnly = true;
             col_FrstName.Width = 90;
             // 
-            // col_PtrName
+            // col_Surname
             // 
-            col_PtrName.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            col_PtrName.HeaderText = "Отчество";
-            col_PtrName.MinimumWidth = 90;
-            col_PtrName.Name = "col_PtrName";
-            col_PtrName.ReadOnly = true;
-            col_PtrName.Width = 90;
+            col_Surname.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            col_Surname.HeaderText = "Отчество";
+            col_Surname.MinimumWidth = 90;
+            col_Surname.Name = "col_Surname";
+            col_Surname.ReadOnly = true;
+            col_Surname.Width = 90;
             // 
             // col_DateOfB
             // 
@@ -167,6 +215,7 @@
             col_company.FillWeight = 50F;
             col_company.HeaderText = "Организация";
             col_company.Name = "col_company";
+            col_company.ReadOnly = true;
             // 
             // col_rank
             // 
@@ -174,13 +223,14 @@
             col_rank.FillWeight = 50F;
             col_rank.HeaderText = "Должность";
             col_rank.Name = "col_rank";
+            col_rank.ReadOnly = true;
             // 
             // col_dateOfHire
             // 
             col_dateOfHire.HeaderText = "Дата принятия на работу";
             col_dateOfHire.Name = "col_dateOfHire";
             col_dateOfHire.ReadOnly = true;
-            col_dateOfHire.Width = 150;
+            col_dateOfHire.Width = 170;
             // 
             // Form_main
             // 
@@ -188,33 +238,44 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1045, 553);
             Controls.Add(btn_add);
-            Controls.Add(cb_typeOfSirch);
-            Controls.Add(btn_sirch);
-            Controls.Add(textBox1);
+            Controls.Add(cb_typeOfSearch);
+            Controls.Add(btn_search);
+            Controls.Add(textBox_Search);
             Controls.Add(btn_LoadMuch);
             Controls.Add(btn_loadData);
-            Controls.Add(dataGridView1);
+            Controls.Add(Table1);
             Name = "Form_main";
             Text = "Список";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Table1).EndInit();
+            contextMenuForTable1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
+        private void Form_main_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView Table1;
         private Button btn_loadData;
         private Button btn_LoadMuch;
-        private TextBox textBox1;
-        private Button btn_sirch;
-        private ComboBox cb_typeOfSirch;
+        private TextBox textBox_Search;
+        private Button btn_search;
+        private ComboBox cb_typeOfSearch;
         private Button btn_add;
-        private DataGridViewTextBoxColumn col_nom;
-        private DataGridViewTextBoxColumn col_foto;
+        private ContextMenuStrip contextMenuForTable1;
+        private ToolStripMenuItem addItem;
+        private ToolStripMenuItem removeItem;
+        private ToolStripMenuItem removeAll;
+        private ToolStripMenuItem editItem;
+        private DataGridViewTextBoxColumn col_id;
+        private DataGridViewImageColumn col_photo;
         private DataGridViewTextBoxColumn col_LstName;
         private DataGridViewTextBoxColumn col_FrstName;
-        private DataGridViewTextBoxColumn col_PtrName;
+        private DataGridViewTextBoxColumn col_Surname;
         private DataGridViewTextBoxColumn col_DateOfB;
         private DataGridViewTextBoxColumn col_company;
         private DataGridViewTextBoxColumn col_rank;
