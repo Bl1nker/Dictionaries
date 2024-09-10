@@ -2,12 +2,12 @@ namespace Dictionaries
 {
     public partial class Form_main : Form
     {
-                
-
+        List<Person> ListOfPersons = new List<Person>();
+       
         public Form_main()
         {
             InitializeComponent();
-            int curentID = 0; 
+            
         }
 
         private void btn_loadData_Click(object sender, EventArgs e)
@@ -16,6 +16,8 @@ namespace Dictionaries
             // пролверяем наличие нужных файлов. Open or Create
             // выполнить через try catch
             // при первом запуске выдать сообщение "Реестр не найден. Создан новый реестр"
+
+            Person.SetCurrentPersonID(1); // устанавливать по условию, либо макс значение из загруженных, либо если ничего не загружено, то единица            
 
         }
 

@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Dictionaries
 {    
-    internal class Person
+    public class Person
     {
-        public int id;
+        static int currentID;
+        public readonly int id;
         public string firstName;
         public string lastName;
         public string surname;
@@ -17,30 +18,38 @@ namespace Dictionaries
         public string rank;
         public DateOnly dateOfHire;
         public Image photo;
+        public string testtt;
 
-        public Person(int id)
+        public static void SetCurrentPersonID(int newId)
         {
-            this.id = id;
+            currentID = newId; 
+        }
+        public static int GetCurrentPersonID()
+        {
+            return currentID;
+        }
+    
+        public Person()
+        {
+            id = currentID++;
             firstName = "";
             lastName = "";
             surname = "";
             dateOfBirth = new DateOnly();
             company = "";
             rank = "";
-            dateOfHire = new DateOnly();
-            photo = Image.FromFile("no_image.jpg");
+            dateOfHire = new DateOnly();            
         }
-        public Person(int id, string lastName, string firstName, string surname, DateOnly dateOfBirth, string company, string rank, DateOnly dateOfHire, Image photo)
+        public Person(string lastName, string firstName, string surname, DateOnly dateOfBirth, string company, string rank, DateOnly dateOfHire)
         {
-            this.id = id;
+            id = currentID;
             this.lastName = lastName; // фамилия
             this.firstName = firstName; // имя
             this.surname = surname; // отчество
             this.dateOfBirth = dateOfBirth; // дата рождения
             this.company = company; // организация
             this.rank = rank; // должность
-            this.dateOfHire = dateOfHire; // дата устройства на работу
-            this.photo = photo; // фото
+            this.dateOfHire = dateOfHire; // дата устройства на работу            
         }
 
     }

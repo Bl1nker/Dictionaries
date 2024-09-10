@@ -63,10 +63,23 @@ namespace Dictionaries
                 return;
             }
             
+            Person person = new Person(lastName, firstName, surname, dateOfB, company, rank, dateOfHire);
+
+            if (photo == null)
+            {
+                person.photo = System.Drawing.Image.FromFile("no_image.jpg");
+            }
+            else
+            {
+                photo.Save($"photo\\{person.id}.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                person.photo = System.Drawing.Image.FromFile($"photo\\{person.id}.jpg");
+            }
+
+            
         }
 
 
-        private DateOnly ConvertToDate(string d, string m, string y, string e, out bool empty)
+        private static DateOnly ConvertToDate(string d, string m, string y, string e, out bool empty)
         {
             if (d == "" && m == "" && y == "")
             {
