@@ -71,8 +71,8 @@ namespace Dictionaries
             }
             else
             {
-                photo.Save($"photo\\{person.id}.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-                person.photo = System.Drawing.Image.FromFile($"photo\\{person.id}.jpg");
+                photo.Save($"{person.id}.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                person.photo = System.Drawing.Image.FromFile($"{person.id}.jpg");
             }
 
             
