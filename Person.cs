@@ -17,8 +17,7 @@ namespace Dictionaries
         public string company;
         public string rank;
         public DateOnly dateOfHire;
-        public Image photo;
-        public string testtt;
+        public string photo_path;        
 
         public static void SetCurrentPersonID(int newId)
         {

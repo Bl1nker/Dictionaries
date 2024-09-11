@@ -3,6 +3,7 @@ namespace Dictionaries
     public partial class Form_main : Form
     {
         List<Person> ListOfPersons = new List<Person>();
+        XDocument xdoc;
        
         public Form_main()
         {
@@ -12,12 +13,50 @@ namespace Dictionaries
 
         private void btn_loadData_Click(object sender, EventArgs e)
         {
-            //загружаем реестр. Без диалога выбора названия. 
-            // пролверяем наличие нужных файлов. Open or Create
-            // выполнить через try catch
-            // при первом запуске выдать сообщение "Реестр не найден. Создан новый реестр"
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. 
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. Open or Create
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ try catch
+            // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ"
 
-            Person.SetCurrentPersonID(1); // устанавливать по условию, либо макс значение из загруженных, либо если ничего не загружено, то единица            
+            Person.SetCurrentPersonID(1); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ            
+
+        }
+
+        private void btn_saveData_Click(object sender, EventArgs e)
+        {
+            if (xdoc == null) 
+            {
+                xdoc = new XDocument();
+                XElement xPersons = new XElement("persons");
+            }
+            
+            foreach (Person person in ListOfPersons)
+            {
+                XElement xPerson = new XElement("person");
+                XAttribute persIDAttr = new XAttribute("ID", person.id.ToString());
+                XElement persLastName = new XElement("LastName", person.lastName);
+                XElement persFirstName = new XElement("FirstName", person.firstName);
+                XElement persSurname = new XElement("Surname", person.surname);
+                XElement persDateOfB = new XElement("DateOfBirth", person.dateOfBirth.ToShortDateString());
+                XElement persCompany = new XElement("Company", person.company);
+                XElement persRank = new XElement("Rank", person.rank);
+                XElement persDateOfHire = new XElement("DateOfHire", person,col_dateOfHire.ToShortDateString());
+                XElement persPhoto = new XElement("Photo", person.photo_path);
+
+                xPerson.Add(persIDAttr);
+                xPerson.Add(persLastName);
+                xPerson.Add(persFirstName);
+                xPerson.Add(persSurname);
+                xPerson.Add(persDateOfB);
+                xPerson.Add(persCompany);
+                xPerson.Add(persRank);
+                xPerson.Add(persDateOfHire);
+                xPerson.Add(persPhoto);
+
+                xPersons.Add(xPerson);
+            }
+            
+            xPersons.Save("persons.xml");
 
         }
 
@@ -26,20 +65,20 @@ namespace Dictionaries
             Form_adding form_Adding = new Form_adding();
             form_Adding.ShowDialog();
             
-            // открыть форму 2 с полями для заполнения
-            // заблокировать форму 1, пока открыта форма 2
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 2 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 1, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 2
         }
 
         private void btn_LoadMuch_Click(object sender, EventArgs e)
         {
-            // загрузить из базы тысячу записей
-            // предварительно создать базу
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         }
 
         private void btn_search_Click(object sender, EventArgs e)
         {
-            // поиск текста из textBox_Search с учетом значения cb_typeOfSearch
-            // использовать startWith предварительно уюрав пробелы с помощью trim.
+            // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ textBox_Search пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ cb_typeOfSearch
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ startWith пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ trim.
         }
     }
 }

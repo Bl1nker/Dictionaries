@@ -72,10 +72,8 @@ namespace Dictionaries
             else
             {
                 photo.Save($"{person.id}.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-                person.photo = System.Drawing.Image.FromFile($"{person.id}.jpg");
-            }
-
-            
+                person.photo_path = $"{person.id}.jpg";
+            }            
         }
 
 
