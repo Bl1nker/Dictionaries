@@ -16,6 +16,7 @@ namespace Dictionaries
     {
         System.Drawing.Image? photo;
 
+        public Person resultPerson;
         public Form_adding()
         {
             InitializeComponent();
@@ -67,13 +68,18 @@ namespace Dictionaries
 
             if (photo == null)
             {
-                person.photo = System.Drawing.Image.FromFile("no_image.jpg");
+                person.photo_path = "no_image.jpg";
             }
             else
             {
                 photo.Save($"{person.id}.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
                 person.photo_path = $"{person.id}.jpg";
-            }            
+            }    
+            
+            resultPerson = person;
+
+            this.Close();
+            
         }
 
 

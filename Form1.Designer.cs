@@ -30,6 +30,15 @@
         {
             components = new System.ComponentModel.Container();
             Table1 = new DataGridView();
+            col_id = new DataGridViewTextBoxColumn();
+            col_photo = new DataGridViewImageColumn();
+            col_LstName = new DataGridViewTextBoxColumn();
+            col_FrstName = new DataGridViewTextBoxColumn();
+            col_Surname = new DataGridViewTextBoxColumn();
+            col_DateOfB = new DataGridViewTextBoxColumn();
+            col_company = new DataGridViewTextBoxColumn();
+            col_rank = new DataGridViewTextBoxColumn();
+            col_dateOfHire = new DataGridViewTextBoxColumn();
             contextMenuForTable1 = new ContextMenuStrip(components);
             addItem = new ToolStripMenuItem();
             btn_loadData = new Button();
@@ -41,15 +50,7 @@
             removeItem = new ToolStripMenuItem();
             removeAll = new ToolStripMenuItem();
             editItem = new ToolStripMenuItem();
-            col_id = new DataGridViewTextBoxColumn();
-            col_photo = new DataGridViewImageColumn();
-            col_LstName = new DataGridViewTextBoxColumn();
-            col_FrstName = new DataGridViewTextBoxColumn();
-            col_Surname = new DataGridViewTextBoxColumn();
-            col_DateOfB = new DataGridViewTextBoxColumn();
-            col_company = new DataGridViewTextBoxColumn();
-            col_rank = new DataGridViewTextBoxColumn();
-            col_dateOfHire = new DataGridViewTextBoxColumn();
+            btn_saveData = new Button();
             ((System.ComponentModel.ISupportInitialize)Table1).BeginInit();
             contextMenuForTable1.SuspendLayout();
             SuspendLayout();
@@ -65,6 +66,80 @@
             Table1.RowHeadersVisible = false;
             Table1.Size = new Size(1021, 493);
             Table1.TabIndex = 0;
+            // 
+            // col_id
+            // 
+            col_id.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            col_id.HeaderText = "ID";
+            col_id.MinimumWidth = 10;
+            col_id.Name = "col_id";
+            col_id.ReadOnly = true;
+            col_id.Width = 43;
+            // 
+            // col_photo
+            // 
+            col_photo.HeaderText = "Фото";
+            col_photo.Name = "col_photo";
+            col_photo.ReadOnly = true;
+            col_photo.Resizable = DataGridViewTriState.True;
+            col_photo.SortMode = DataGridViewColumnSortMode.Automatic;
+            // 
+            // col_LstName
+            // 
+            col_LstName.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            col_LstName.HeaderText = "Фамилия";
+            col_LstName.MinimumWidth = 90;
+            col_LstName.Name = "col_LstName";
+            col_LstName.ReadOnly = true;
+            col_LstName.Width = 90;
+            // 
+            // col_FrstName
+            // 
+            col_FrstName.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            col_FrstName.HeaderText = "Имя";
+            col_FrstName.MinimumWidth = 90;
+            col_FrstName.Name = "col_FrstName";
+            col_FrstName.ReadOnly = true;
+            col_FrstName.Width = 90;
+            // 
+            // col_Surname
+            // 
+            col_Surname.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            col_Surname.HeaderText = "Отчество";
+            col_Surname.MinimumWidth = 90;
+            col_Surname.Name = "col_Surname";
+            col_Surname.ReadOnly = true;
+            col_Surname.Width = 90;
+            // 
+            // col_DateOfB
+            // 
+            col_DateOfB.HeaderText = "Дата рождения";
+            col_DateOfB.Name = "col_DateOfB";
+            col_DateOfB.ReadOnly = true;
+            col_DateOfB.Width = 150;
+            // 
+            // col_company
+            // 
+            col_company.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            col_company.FillWeight = 50F;
+            col_company.HeaderText = "Организация";
+            col_company.Name = "col_company";
+            col_company.ReadOnly = true;
+            // 
+            // col_rank
+            // 
+            col_rank.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            col_rank.FillWeight = 50F;
+            col_rank.HeaderText = "Должность";
+            col_rank.Name = "col_rank";
+            col_rank.ReadOnly = true;
+            // 
+            // col_dateOfHire
+            // 
+            col_dateOfHire.HeaderText = "Дата принятия на работу";
+            col_dateOfHire.Name = "col_dateOfHire";
+            col_dateOfHire.ReadOnly = true;
+            col_dateOfHire.Width = 170;
             // 
             // contextMenuForTable1
             // 
@@ -158,85 +233,22 @@
             editItem.Size = new Size(32, 19);
             editItem.Text = "Изменить запись";
             // 
-            // col_id
+            // btn_saveData
             // 
-            col_id.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            col_id.HeaderText = "ID";
-            col_id.MinimumWidth = 10;
-            col_id.Name = "col_id";
-            col_id.ReadOnly = true;
-            col_id.Width = 43;
-            // 
-            // col_photo
-            // 
-            col_photo.HeaderText = "Фото";
-            col_photo.Name = "col_photo";
-            col_photo.ReadOnly = true;
-            col_photo.Resizable = DataGridViewTriState.True;
-            col_photo.SortMode = DataGridViewColumnSortMode.Automatic;
-            // 
-            // col_LstName
-            // 
-            col_LstName.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            col_LstName.HeaderText = "Фамилия";
-            col_LstName.MinimumWidth = 90;
-            col_LstName.Name = "col_LstName";
-            col_LstName.ReadOnly = true;
-            col_LstName.Width = 90;
-            // 
-            // col_FrstName
-            // 
-            col_FrstName.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            col_FrstName.HeaderText = "Имя";
-            col_FrstName.MinimumWidth = 90;
-            col_FrstName.Name = "col_FrstName";
-            col_FrstName.ReadOnly = true;
-            col_FrstName.Width = 90;
-            // 
-            // col_Surname
-            // 
-            col_Surname.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            col_Surname.HeaderText = "Отчество";
-            col_Surname.MinimumWidth = 90;
-            col_Surname.Name = "col_Surname";
-            col_Surname.ReadOnly = true;
-            col_Surname.Width = 90;
-            // 
-            // col_DateOfB
-            // 
-            col_DateOfB.HeaderText = "Дата рождения";
-            col_DateOfB.Name = "col_DateOfB";
-            col_DateOfB.ReadOnly = true;
-            col_DateOfB.Width = 150;
-            // 
-            // col_company
-            // 
-            col_company.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            col_company.FillWeight = 50F;
-            col_company.HeaderText = "Организация";
-            col_company.Name = "col_company";
-            col_company.ReadOnly = true;
-            // 
-            // col_rank
-            // 
-            col_rank.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            col_rank.FillWeight = 50F;
-            col_rank.HeaderText = "Должность";
-            col_rank.Name = "col_rank";
-            col_rank.ReadOnly = true;
-            // 
-            // col_dateOfHire
-            // 
-            col_dateOfHire.HeaderText = "Дата принятия на работу";
-            col_dateOfHire.Name = "col_dateOfHire";
-            col_dateOfHire.ReadOnly = true;
-            col_dateOfHire.Width = 170;
+            btn_saveData.Location = new Point(292, 12);
+            btn_saveData.Name = "btn_saveData";
+            btn_saveData.Size = new Size(75, 30);
+            btn_saveData.TabIndex = 7;
+            btn_saveData.Text = "Сохранить";
+            btn_saveData.UseVisualStyleBackColor = true;
+            btn_saveData.Click += btn_saveData_Click;
             // 
             // Form_main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1045, 553);
+            Controls.Add(btn_saveData);
             Controls.Add(btn_add);
             Controls.Add(cb_typeOfSearch);
             Controls.Add(btn_search);
@@ -280,5 +292,6 @@
         private DataGridViewTextBoxColumn col_company;
         private DataGridViewTextBoxColumn col_rank;
         private DataGridViewTextBoxColumn col_dateOfHire;
+        private Button btn_saveData;
     }
 }
