@@ -13,13 +13,56 @@ namespace Dictionaries
 
         private void btn_loadData_Click(object sender, EventArgs e)
         {
-            //��������� ������. ��� ������� ������ ��������. 
-            // ���������� ������� ������ ������. Open or Create
-            // ��������� ����� try catch
+
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "XML files(*.xml)|*.xml|All files(*.*)|*.*";
+            if (openFileDialog1.ShowDialog() == DialogResult.Cancel) return;
+
+            string fileName = openFileDialog1.FileName;
+            try 
+            {
+                xdoc.Load(fileName);
+            } 
+            catch (IOException ex)
+            {
+                MessageBox.Show("Не удалось открыть выбранный файл.\n");
+                // need to add write in log XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            }
+            if (!xdoc.Conteins("persons"))
+            {
+                MessageBox.Show("В уазанном файле нет реестра сотрудников");
+                return;
+            }
+            
+            XElement persons = xdoc.Element("persons");
+
+            if (persons.Count > 0) Person.SetCurrentPersonID(persons.ID.Max());
+            else Person.SetCurrentPersonID(1);
             // ��� ������ ������� ������ ��������� "������ �� ������. ������ ����� ������"
 
-            Person.SetCurrentPersonID(1); // ������������� �� �������, ���� ���� �������� �� �����������, ���� ���� ������ �� ���������, �� �������            
+            ListOfPersons = GetListOfPersons(persons);
 
+        }
+
+        static void saveData()
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            if (saveFileDialog1.ShowDialog() == DialogResult.Cancel) return;
+            string filename = saveFileDialog1.FileName;
+             // сохраняем текст в файл
+            
+            MessageBox.Show("Файл сохранен");
+        }
+        static List<Person> GetListOfPersons(XElement xpeople)
+        {
+            List<Person> result = new List<Person>();
+
+            foreach (XElement pers in xpeople) 
+            {
+                Person tmp = new Person(pers.ID, pers.LastName, pers.FirstName, pers.Surname, DateOnly.Parse(pers.DateOfBirth), pers.Company, pers.Rank, DateOnly.Parse(pers.DateOfHire));
+                result.Add(tmp);
+            }
+            return result;
         }
 
         private void btn_saveData_Click(object sender, EventArgs e)

@@ -28,16 +28,16 @@ namespace Dictionaries
             return currentID;
         }
     
-        public Person()
+        public Person(int ID, string lastName, string firstName, string surname, DateOnly dateOfBirth, string company, string rank, DateOnly dateOfHire)
         {
-            id = currentID++;
-            firstName = "";
-            lastName = "";
-            surname = "";
-            dateOfBirth = new DateOnly();
-            company = "";
-            rank = "";
-            dateOfHire = new DateOnly();            
+            id = ID;
+            this.lastName = lastName; // фамилия
+            this.firstName = firstName; // имя
+            this.surname = surname; // отчество
+            this.dateOfBirth = dateOfBirth; // дата рождения
+            this.company = company; // организация
+            this.rank = rank; // должность
+            this.dateOfHire = dateOfHire; // дата устройства на работу            
         }
         public Person(string lastName, string firstName, string surname, DateOnly dateOfBirth, string company, string rank, DateOnly dateOfHire)
         {
