@@ -13,6 +13,8 @@ namespace Dictionaries
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form_main());
+            
+            
         }
     }
 }

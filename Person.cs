@@ -19,9 +19,9 @@ namespace Dictionaries
         public DateOnly dateOfHire;
         public string photo_path;        
 
-        public static void SetCurrentPersonID(int newId)
+        public static void SetCurrentPersonID(int newID)
         {
-            currentID = newId; 
+            currentID = newID; 
         }
         public static int GetCurrentPersonID()
         {
@@ -37,7 +37,8 @@ namespace Dictionaries
             this.dateOfBirth = dateOfBirth; // дата рождения
             this.company = company; // организация
             this.rank = rank; // должность
-            this.dateOfHire = dateOfHire; // дата устройства на работу            
+            this.dateOfHire = dateOfHire; // дата устройства на работу
+            photo_path = "";
         }
         public Person(string lastName, string firstName, string surname, DateOnly dateOfBirth, string company, string rank, DateOnly dateOfHire)
         {
@@ -48,7 +49,8 @@ namespace Dictionaries
             this.dateOfBirth = dateOfBirth; // дата рождения
             this.company = company; // организация
             this.rank = rank; // должность
-            this.dateOfHire = dateOfHire; // дата устройства на работу            
+            this.dateOfHire = dateOfHire; // дата устройства на работу
+            photo_path = "";
         }
 
     }

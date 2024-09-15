@@ -137,7 +137,7 @@
             textBox_company.Location = new Point(156, 152);
             textBox_company.Name = "textBox_company";
             textBox_company.Size = new Size(180, 23);
-            textBox_company.TabIndex = 8;
+            textBox_company.TabIndex = 9;
             // 
             // label_rank
             // 
@@ -190,14 +190,14 @@
             comboBox_monthOfB.Location = new Point(196, 123);
             comboBox_monthOfB.Name = "comboBox_monthOfB";
             comboBox_monthOfB.Size = new Size(74, 23);
-            comboBox_monthOfB.TabIndex = 16;
+            comboBox_monthOfB.TabIndex = 7;
             // 
             // textBox_yearOfB
             // 
             textBox_yearOfB.Location = new Point(276, 123);
             textBox_yearOfB.Name = "textBox_yearOfB";
             textBox_yearOfB.Size = new Size(60, 23);
-            textBox_yearOfB.TabIndex = 17;
+            textBox_yearOfB.TabIndex = 8;
             // 
             // label_DateOfB_Year
             // 
@@ -222,7 +222,7 @@
             textBox_yearOfHire.Location = new Point(276, 226);
             textBox_yearOfHire.Name = "textBox_yearOfHire";
             textBox_yearOfHire.Size = new Size(60, 23);
-            textBox_yearOfHire.TabIndex = 23;
+            textBox_yearOfHire.TabIndex = 13;
             // 
             // comboBox_monthOfHire
             // 
@@ -232,7 +232,7 @@
             comboBox_monthOfHire.Location = new Point(196, 226);
             comboBox_monthOfHire.Name = "comboBox_monthOfHire";
             comboBox_monthOfHire.Size = new Size(74, 23);
-            comboBox_monthOfHire.TabIndex = 22;
+            comboBox_monthOfHire.TabIndex = 12;
             // 
             // label_DateOfHire_Month
             // 
@@ -257,10 +257,11 @@
             textBox_dayOfHire.Location = new Point(156, 226);
             textBox_dayOfHire.Name = "textBox_dayOfHire";
             textBox_dayOfHire.Size = new Size(34, 23);
-            textBox_dayOfHire.TabIndex = 19;
+            textBox_dayOfHire.TabIndex = 11;
             // 
             // pictureBox_Add_photo
             // 
+            pictureBox_Add_photo.ErrorImage = Properties.Resources.no_image;
             pictureBox_Add_photo.Image = Properties.Resources.no_image;
             pictureBox_Add_photo.InitialImage = Properties.Resources.no_image;
             pictureBox_Add_photo.Location = new Point(182, 263);
@@ -275,8 +276,8 @@
             btn_AddPhoto.Location = new Point(21, 298);
             btn_AddPhoto.Name = "btn_AddPhoto";
             btn_AddPhoto.Size = new Size(100, 40);
-            btn_AddPhoto.TabIndex = 26;
-            btn_AddPhoto.Text = "Добавить фото";
+            btn_AddPhoto.TabIndex = 14;
+            btn_AddPhoto.Text = "Выбрать фото";
             btn_AddPhoto.UseVisualStyleBackColor = true;
             btn_AddPhoto.Click += btn_AddPhoto_Click;
             // 
@@ -285,7 +286,7 @@
             btn_AddItem.Location = new Point(55, 419);
             btn_AddItem.Name = "btn_AddItem";
             btn_AddItem.Size = new Size(100, 35);
-            btn_AddItem.TabIndex = 27;
+            btn_AddItem.TabIndex = 15;
             btn_AddItem.Text = "Добавить";
             btn_AddItem.UseVisualStyleBackColor = true;
             btn_AddItem.Click += btn_AddItem_Click;
@@ -295,7 +296,7 @@
             btn_Cancel.Location = new Point(182, 419);
             btn_Cancel.Name = "btn_Cancel";
             btn_Cancel.Size = new Size(100, 35);
-            btn_Cancel.TabIndex = 28;
+            btn_Cancel.TabIndex = 16;
             btn_Cancel.Text = "Отмена";
             btn_Cancel.UseVisualStyleBackColor = true;
             btn_Cancel.Click += btn_Cancel_Click;

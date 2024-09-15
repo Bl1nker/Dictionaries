@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace Dictionaries
         System.Drawing.Image? photo;
 
         public Person resultPerson;
+        int editingID = 0;
         public Form_adding()
         {
             InitializeComponent();
@@ -48,7 +50,24 @@ namespace Dictionaries
             pictureBox_Add_photo.Image = photo;
 
         }
-
+        public void FormToEdit(Person pers)
+        {
+            this.Text = "Изменение записи";
+            textBox_LstName.Text = pers.lastName;
+            textBox_FrstName.Text = pers.firstName;
+            textBox_Surname.Text = pers.surname;
+            textBox_dayOfB.Text = pers.dateOfBirth.Day.ToString();
+            comboBox_monthOfB.Text = pers.dateOfBirth.Month.ToString();
+            textBox_yearOfB.Text = pers.dateOfBirth.Year.ToString();
+            textBox_company.Text = pers.company;
+            textBox_rank.Text = pers.rank;
+            textBox_dayOfHire.Text = pers.dateOfHire.Day.ToString();
+            comboBox_monthOfHire.Text = pers.dateOfHire.Month.ToString();
+            textBox_yearOfHire.Text = pers.dateOfHire.Year.ToString();
+            pictureBox_Add_photo.Image = System.Drawing.Image.FromFile(pers.photo_path);
+            btn_AddItem.Text = "Изменить";
+            editingID = pers.id;
+        }
         private void btn_AddItem_Click(object sender, EventArgs e)
         {
             string lastName = textBox_LstName.Text;
@@ -63,25 +82,40 @@ namespace Dictionaries
             {
                 return;
             }
-            
-            Person person = new Person(lastName, firstName, surname, dateOfB, company, rank, dateOfHire);
-
-            if (photo == null)
+            if(Person.GetCurrentPersonID() == 0)
             {
-                person.photo_path = "no_image.jpg";
+                Person.SetCurrentPersonID(1);
+            }
+            Person person;
+            if (editingID != Person.GetCurrentPersonID())
+            {
+                person = new Person(editingID, lastName, firstName, surname, dateOfB, company, rank, dateOfHire);
             }
             else
             {
-                photo.Save($"{person.id}.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-                person.photo_path = $"{person.id}.jpg";
-            }    
+                person = new Person(lastName, firstName, surname, dateOfB, company, rank, dateOfHire);
+            }                 
+
+            string path;
+
+            if (photo == null)
+            {    
+                path = @"Photo\no_image.jpg";   
+                photo = System.Drawing.Image.FromFile(path);                             
+            }
+            else
+            {
+                path = $@"Photo\{person.id}.jpg";
+                photo.Save(path, System.Drawing.Imaging.ImageFormat.Jpeg);
+            }  
+                        
+            person.photo_path = path;
             
             resultPerson = person;
 
             this.Close();
-            
         }
-
+              
 
         private static DateOnly ConvertToDate(string d, string m, string y, string e, out bool empty)
         {
