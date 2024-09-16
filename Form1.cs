@@ -11,6 +11,9 @@ namespace Dictionaries
         XDocument xdoc;
 
         string fileName;
+
+        string textToSearch = "";
+        int stopIdx = 0;
        
         public Form_main()
         {
@@ -214,12 +217,10 @@ namespace Dictionaries
                 Form_adding form_Adding = new Form_adding();
                 form_Adding.FormToEdit(PersToEdit);
                 
-                form_Adding.ShowDialog();
-                
+                form_Adding.ShowDialog();                
 
                 ShowPersons();
             }
-
         }
         private void ShowPersons()
         {
@@ -285,14 +286,46 @@ namespace Dictionaries
         }
         private void btn_LoadMuch_Click(object sender, EventArgs e)
         {
-             
+            // Delete this button
 
             // ��������� �� ���� ������ �������
             // �������������� ������� ����
         }
 
         private void btn_search_Click(object sender, EventArgs e)
-        {
+        {      
+            if (textToSearch == "") return;
+
+            if(textToSearch != textBox_Search.Text.Trim())
+            {
+                textToSearch = textBox_Search.Text.Trim();
+                Table1.ClearSelection();
+                stopIdx = 0;
+            }
+
+            string TypeOfSearch = cb_typeOfSearch.Text;
+            int coltoSearch = TypeOfSearch switch{
+                "по фамилии" => 2,
+                "по имени" => 3,
+                "по отчеству" => 4,
+                "по организации" => 6,
+                "по должности" => 7
+            };
+
+            
+            for(int i = stopIdx; i < Table1.Rows.Count; i++)
+            {
+                if (Table1.Rows[i].Cells[coltoSearch].Value.startWith(textToSearch) && !Table1.Rows[i].Selected) 
+                {
+                    Table1.Rows[i].Selected = true;
+                    stopIdx = ++i;
+                }
+                if(i == Table1.Rows.Count) stopIdx = 0;
+            } 
+
+
+            var findedPers = ListOfPersons.Find(x => x.LastName.startWith(textToSearch));
+
             //foreach (DataGridViewRow row in Table1.SelectedRows)
             //{
             //    Table1.Rows.RemoveAt(row.Index);
