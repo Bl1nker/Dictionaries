@@ -14,6 +14,7 @@ namespace Dictionaries
 
         string textToSearch = "";
         int stopIdx = 0;
+        List<List<DataGridViewRow>> datarows = new List<List<DataGridViewRow>>() { new List<DataGridViewRow>(), new List<DataGridViewRow>()};
        
         public Form_main()
         {
@@ -131,7 +132,6 @@ namespace Dictionaries
             return xdoc;        
         }
         
-
         private void btn_saveData_Click(object sender, EventArgs e)
         {
             SaveListToXml();
@@ -226,12 +226,54 @@ namespace Dictionaries
         {
             Table1.Rows.Clear();
 
-            foreach (Person pers in ListOfPersons)
+            List<DataGridViewRow> rows;
+            if (ListOfPersons.Count < 200)
             {
-                Table1.Rows.Add(PersonToRow(pers));                
-            }            
+                rows = new List<DataGridViewRow>();
+                foreach (Person pers in ListOfPersons)
+                {
+                    rows.Add(PersonToRow(pers));
+                }                
+            }
+            else
+            {
+                Thread thrd1 = new Thread(this.Run);
+                Thread thrd2 = new Thread(this.Run);
+                thrd1.Start(1);
+                thrd2.Start(2);
+                thrd1.Join();
+                thrd2.Join();
+                rows = [.. datarows[0], .. datarows[1]];                
+            }
+            
+            Table1.Rows.AddRange(rows.ToArray());            
         }
-        static DataGridViewRow PersonToRow( Person pers)
+
+        void Run(object num)
+        {
+            List<DataGridViewRow> rows = new List<DataGridViewRow>();
+            int midle = ListOfPersons.Count / 2;
+            
+            if((int) num == 1)
+            {
+                for (int i = 0; i < midle; i++)
+                {
+                    rows.Add(new DataGridViewRow());
+                    rows[i] = PersonToRow(ListOfPersons[i]);
+                }
+            }
+            else
+            {
+                for (int i = midle + 1; i < ListOfPersons.Count; i++)
+                {
+                    rows.Add(new DataGridViewRow());
+                    rows[i - (midle + 1)] = PersonToRow(ListOfPersons[i]);
+                }
+            }
+            datarows[(int)num - 1].AddRange(rows); 
+        }
+
+        static DataGridViewRow PersonToRow(Person pers)
         {
             DataGridViewRow row = new DataGridViewRow();
 
@@ -239,9 +281,9 @@ namespace Dictionaries
             {
                 Value = pers.id
             };
-
+            
             DataGridViewCell cell_photo = new DataGridViewImageCell
-            {
+            {                
                 Value = Image.FromFile($"{pers.photo_path}")
             };            
 
@@ -284,24 +326,16 @@ namespace Dictionaries
 
             return row;
         }
-        private void btn_LoadMuch_Click(object sender, EventArgs e)
-        {
-            // Delete this button
-
-            // ��������� �� ���� ������ �������
-            // �������������� ������� ����
-        }
-
+        
         private void btn_search_Click(object sender, EventArgs e)
-        {      
-            if (textToSearch == "") return;
-
+        {       
             if(textToSearch != textBox_Search.Text.Trim())
             {
                 textToSearch = textBox_Search.Text.Trim();
                 Table1.ClearSelection();
                 stopIdx = 0;
             }
+            if (textToSearch == "") return;
 
             string TypeOfSearch = cb_typeOfSearch.Text;
             int coltoSearch = TypeOfSearch switch{
@@ -309,31 +343,20 @@ namespace Dictionaries
                 "по имени" => 3,
                 "по отчеству" => 4,
                 "по организации" => 6,
-                "по должности" => 7
+                "по должности" => 7,
+                _ => 2
             };
-
             
             for(int i = stopIdx; i < Table1.Rows.Count; i++)
             {
-                if (Table1.Rows[i].Cells[coltoSearch].Value.startWith(textToSearch) && !Table1.Rows[i].Selected) 
+                string tmpStr = Table1.Rows[i].Cells[coltoSearch].Value.ToString();
+                if (tmpStr.StartsWith(textToSearch) && !Table1.Rows[i].Selected) 
                 {
                     Table1.Rows[i].Selected = true;
                     stopIdx = ++i;
                 }
                 if(i == Table1.Rows.Count) stopIdx = 0;
             } 
-
-
-            var findedPers = ListOfPersons.Find(x => x.LastName.startWith(textToSearch));
-
-            //foreach (DataGridViewRow row in Table1.SelectedRows)
-            //{
-            //    Table1.Rows.RemoveAt(row.Index);
-            //    dwgFiles = dwgFiles.Where(x => !x.Contains((string)row.Cells[1].Value)).ToList();
-            //    ShowCabelSources(dwgFiles);
-            //}
-            // ����� ������ �� textBox_Search � ������ �������� cb_typeOfSearch
-            // ������������ startWith �������������� ����� ������� � ������� trim.
         }
     }
 }

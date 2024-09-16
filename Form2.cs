@@ -4,8 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,8 +17,6 @@ namespace Dictionaries
 {
     public partial class Form_adding : Form
     {
-        System.Drawing.Image? photo;
-
         public Person resultPerson;
         int editingID = 0;
         public Form_adding()
@@ -39,16 +39,13 @@ namespace Dictionaries
 
             try
             {
-                photo = System.Drawing.Image.FromFile(openDialog.FileName);
+                pictureBox_Add_photo.Image = System.Drawing.Image.FromFile(openDialog.FileName);
             }
             catch (OutOfMemoryException ex)
             {
                 MessageBox.Show("Ошибка чтения фото");
                 return;
             }
-
-            pictureBox_Add_photo.Image = photo;
-
         }
         public void FormToEdit(Person pers)
         {
@@ -98,24 +95,47 @@ namespace Dictionaries
 
             string path;
 
-            if (photo == null)
+            if (pictureBox_Add_photo.Image == pictureBox_Add_photo.ErrorImage)
             {    
-                path = @"Photo\no_image.jpg";   
-                photo = System.Drawing.Image.FromFile(path);                             
+                path = @".\Photo\no_image.jpg";   
+                pictureBox_Add_photo.Image = System.Drawing.Image.FromFile(path);                             
             }
             else
             {
-                path = $@"Photo\{person.id}.jpg";
-                photo.Save(path, System.Drawing.Imaging.ImageFormat.Jpeg);
-            }  
-                        
+                path = $@".\Photo\{person.id}.jpg";
+                SavingPhoto(path);
+                
+            }
+
             person.photo_path = path;
             
             resultPerson = person;
 
             this.Close();
         }
-              
+
+        public void SavingPhoto(string path)
+        {
+            System.Drawing.Image img = pictureBox_Add_photo.Image;
+            Bitmap bmp = img as Bitmap;
+
+            BitmapData bmpData = bmp.LockBits(new Rectangle(0, 0, img.Width, img.Height), ImageLockMode.ReadWrite, bmp.PixelFormat);
+            
+            int byteCount = bmpData.Stride * bmpData.Height;
+            byte[] bytes = new byte[byteCount];
+
+            Marshal.Copy(bmpData.Scan0, bytes, 0, byteCount);
+            bmp.UnlockBits(bmpData);
+            
+            Bitmap bmpNew = new Bitmap(bmp.Width, bmp.Height);
+            BitmapData bmpData1 = bmpNew.LockBits(new Rectangle(new Point(), bmpNew.Size), ImageLockMode.ReadWrite, bmp.PixelFormat);
+            Marshal.Copy(bytes, 0, bmpData1.Scan0, bytes.Length);
+            bmpNew.UnlockBits(bmpData1);
+            bmp.Dispose();
+            
+            //code to manipulate bmpNew goes here.
+            bmpNew.Save(path);
+        }
 
         private static DateOnly ConvertToDate(string d, string m, string y, string e, out bool empty)
         {

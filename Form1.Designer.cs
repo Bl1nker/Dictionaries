@@ -35,7 +35,6 @@
             contextMenuForTable1 = new ContextMenuStrip(components);
             addItem = new ToolStripMenuItem();
             btn_loadData = new Button();
-            btn_LoadMuch = new Button();
             textBox_Search = new TextBox();
             btn_search = new Button();
             cb_typeOfSearch = new ComboBox();
@@ -91,16 +90,6 @@
             btn_loadData.Text = "Загрузить реестр";
             btn_loadData.UseVisualStyleBackColor = true;
             btn_loadData.Click += btn_loadData_Click;
-            // 
-            // btn_LoadMuch
-            // 
-            btn_LoadMuch.Location = new Point(419, 12);
-            btn_LoadMuch.Name = "btn_LoadMuch";
-            btn_LoadMuch.Size = new Size(160, 30);
-            btn_LoadMuch.TabIndex = 2;
-            btn_LoadMuch.Text = "Стресс тест";
-            btn_LoadMuch.UseVisualStyleBackColor = true;
-            btn_LoadMuch.Click += btn_LoadMuch_Click;
             // 
             // textBox_Search
             // 
@@ -262,7 +251,6 @@
             Controls.Add(cb_typeOfSearch);
             Controls.Add(btn_search);
             Controls.Add(textBox_Search);
-            Controls.Add(btn_LoadMuch);
             Controls.Add(btn_loadData);
             Controls.Add(Table1);
             Name = "Form_main";
@@ -281,8 +269,7 @@
         #endregion
 
         private DataGridView Table1;
-        private Button btn_loadData;
-        private Button btn_LoadMuch;
+        private Button btn_loadData;        
         private TextBox textBox_Search;
         private Button btn_search;
         private ComboBox cb_typeOfSearch;
